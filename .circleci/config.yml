@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  lint:
     docker:
       - image: dantoml/swiftlint:latest
     steps:
@@ -8,3 +8,16 @@ jobs:
       - run: swiftlint lint | tee swiftlint.txt
       - store_artifacts:
           path: swiftlint.txt
+  danger:
+    docker:
+      - image: dantoml/danger:latest
+    steps:
+      - checkout
+      - run: danger
+
+workflows:
+  version: 2
+  build_test_lint:
+    jobs:
+      - lint
+      - danger
