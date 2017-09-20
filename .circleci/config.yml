@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: dantoml/swiftlint:latest
+    steps:
+      - checkout
+      - run: swiftlint lint | tee swiftlint.txt
+      - store_artifacts:
+          path: swiftlint.txt
