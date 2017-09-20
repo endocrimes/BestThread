@@ -14,6 +14,12 @@ jobs:
     steps:
       - checkout
       - run: danger
+  build_test:
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout
+      - run: fastlane scan
 
 workflows:
   version: 2
@@ -21,3 +27,4 @@ workflows:
     jobs:
       - lint
       - danger
+      - build_test
