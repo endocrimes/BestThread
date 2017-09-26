@@ -5,11 +5,11 @@ jobs:
       - image: dantoml/swiftlint:latest
     steps:
       - checkout
-      - run: swiftlint lint --reporter junit | tee swiftlint.txt
+      - run: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
-          path: swiftlint.txt
+          path: result.xml
       - store_test_results:
-          path: swiftlint.txt
+          path: result.xml
   danger:
     docker:
       - image: dantoml/danger:latest
